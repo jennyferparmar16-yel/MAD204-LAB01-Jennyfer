@@ -1,14 +1,3 @@
-/**
- * Course: MAD204 - Lab 01
- * Student Name: YOUR NAME
- * Student ID: YOUR ID
- * Date: YYYY-MM-DD
- *
- * Description:
- * This class models a Student with an ID, name, and 5 grades.
- * It provides methods to set grades, compute averages, determine
- * letter grades, and return a formatted string representation.
- */
 
 public class Student {
     private String name;
@@ -27,9 +16,10 @@ public class Student {
     }
 
     /**
-     * Sets a grade at a given index.
+     * Sets a grade at a specific index in the grades array
+     * validates that the index is within bounds(0-4)
      * @param index grade index (0-4)
-     * @param value grade value
+     * @param value grade value to assign
      */
     public void setGrade(int index, double value) {
         if (index >= 0 && index < grades.length) {
@@ -39,7 +29,7 @@ public class Student {
 
     /**
      * Calculates the average of the 5 grades.
-     * @return average grade
+     * @return average grade as a double
      */
     public double average() {
         double sum = 0;
@@ -50,8 +40,8 @@ public class Student {
     }
 
     /**
-     * Determines the letter grade based on average.
-     * @return char letter grade
+     * Determines the letter grade based on average score.
+     * @return letter grade as char
      */
     public char letterGrade() {
         double avg = average();
@@ -62,15 +52,15 @@ public class Student {
         else return 'F';
     }
 
-    /**
-     * Returns a formatted string with student details.
-     */
+    //Returns a formatted string with student details.
+
     @Override
     public String toString() {
         return "ID: " + id + ", Name: " + name +
                 ", Avg: " + String.format("%.2f", average()) +
                 " (" + letterGrade() + ")";
     }
+//getter method to retrieve the students name
 
     public String getName() {
         return name;
