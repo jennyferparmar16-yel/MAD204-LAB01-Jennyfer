@@ -5,7 +5,7 @@
  * Date: 2025-09-21
  *
  * Description:
- * This program implements a Gradebook & Utilities console app.
+ * This program depicts a Gradebook & Utilities console app.
  * Users can add students, enter grades, compute averages/letter grades,
  * and run utility demos (operator precedence, type casting, recursion).
  */
@@ -15,9 +15,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
+    // List to store student objects
     private static ArrayList<Student> students = new ArrayList<>();
-    private static Scanner sc = new Scanner(System.in);
+    // Scanner for user input private
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         boolean running = true;
@@ -31,24 +32,24 @@ public class Main {
             System.out.println("4. Utilities");
             System.out.println("5. Exit");
             System.out.print("Choose an option: ");
-
+            //get user input
             int choice = safeIntInput();
-
+        //handle menu selection
             switch (choice) {
                 case 1:
-                    addStudent();
+                    addStudent(); //add student
                     break;
                 case 2:
-                    enterGrades();
+                    enterGrades(); //add grades for students
                     break;
                 case 3:
-                    showAllStudents();
+                    showAllStudents(); // display students
                     break;
                 case 4:
-                    utilitiesMenu();
+                    utilitiesMenu(); //use utility menu
                     break;
                 case 5:
-                    running = false;
+                    running = false; //exit program
                     System.out.println("Exiting program...");
                     break;
                 default:
@@ -57,7 +58,7 @@ public class Main {
         }
     }
 
-    /** Adds a new student with do-while loop for repeat */
+    // Adds a new student with do-while loop for multiple enteries.
     private static void addStudent() {
         String again;
         do {
@@ -65,16 +66,16 @@ public class Main {
             int id = safeIntInput();
             System.out.print("Enter student name: ");
             String name = sc.next();
-
+        //create and add new students to the list
             students.add(new Student(id, name));
             System.out.println("Student added!");
-
+        //ask if user wants to add another student
             System.out.print("Add another student? (y/n): ");
             again = sc.next();
         } while (again.equalsIgnoreCase("y"));
     }
 
-    /** Enter grades for a student */
+    // Enter grades for a student specific student
     private static void enterGrades() {
         if (students.isEmpty()) {
             System.out.println("No students available.");
@@ -99,7 +100,7 @@ public class Main {
         System.out.println("Student not found.");
     }
 
-    /** Show all students using for-each loop */
+    // display all students using a for-each loop
     private static void showAllStudents() {
         if (students.isEmpty()) {
             System.out.println("No students to display.");
@@ -107,11 +108,11 @@ public class Main {
         }
         System.out.println("\n--- Student List ---");
         for (Student s : students) {
-            System.out.println(s);
+            System.out.println(s); //assumes student class has a toString()
         }
     }
 
-    /** Utilities submenu */
+    //Displays the utilities submenu and handles user selection
     private static void utilitiesMenu() {
         System.out.println("\n--- Utilities ---");
         System.out.println("1. Operator Demo");
@@ -123,15 +124,15 @@ public class Main {
 
         switch (choice) {
             case 1:
-                operatorDemo();
+                operatorDemo(); //show operator precedence
                 break;
             case 2:
-                typeCastingDemo();
+                typeCastingDemo(); // show type casting examples
                 break;
             case 3:
                 System.out.print("Enter number to countdown: ");
                 int n = safeIntInput();
-                if (n >= 0) countdown(n);
+                if (n >= 0) countdown(n); //start countdown if non-negative
                 else System.out.println("Negative not allowed.");
                 break;
             default:
@@ -139,37 +140,37 @@ public class Main {
         }
     }
 
-    /** Operator precedence demo */
+    // Operator precedence with examples
     private static void operatorDemo() {
-        int result1 = 2 + 3 * 4;       // multiplication first
-        int result2 = (2 + 3) * 4;     // parentheses first
+        int result1 = 2 + 3 * 4;       // multiplication before addition
+        int result2 = (2 + 3) * 4;     // parentheses change precendence
         System.out.println("2 + 3 * 4 = " + result1);
         System.out.println("(2 + 3) * 4 = " + result2);
         System.out.println("Explanation: Multiplication has higher precedence than addition.");
     }
 
-    /** Type casting demo */
+    // Type casting example: widening and narrowing
     private static void typeCastingDemo() {
         int x = 7;
-        double y = x; // widening
+        double y = x; // widening (int to double)
         double z = 9.8;
-        int w = (int) z; // narrowing
+        int w = (int) z; // narrowing (double to int)
         System.out.println("Widening int->double: " + x + " -> " + y);
         System.out.println("Narrowing double->int: " + z + " -> " + w);
     }
 
-    /** Recursive countdown */
+    /** Recursive countdown  from given number to zero*/
     private static void countdown(int n) {
         if (n < 0) return;
         if (n == 0) {
             System.out.println("0... Done!");
         } else {
             System.out.println(n);
-            countdown(n - 1);
+            countdown(n - 1); // recursive call
         }
     }
 
-    /** Safe integer input with exception handling */
+    // Safely reads an integer from user input with exception handling
     private static int safeIntInput() {
         while (true) {
             try {
@@ -181,7 +182,7 @@ public class Main {
         }
     }
 
-    /** Safe double input with exception handling */
+    // Safely reads a double from user input with exception handling
     private static double safeDoubleInput() {
         while (true) {
             try {
